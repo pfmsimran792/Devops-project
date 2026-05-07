@@ -30,6 +30,7 @@ pipeline {
 
         stage('Docker Build') {
             steps {
+              dir('spring-petclinic') {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
                     usernameVariable: 'DOCKER_USER',
@@ -40,7 +41,7 @@ pipeline {
                 }
             }
         }
-
+      }
         stage('Docker Login and Push') {
             steps {
                 withCredentials([usernamePassword(
