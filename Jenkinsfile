@@ -2,6 +2,7 @@ pipeline {
    agent any
     tools {
         git 'git'
+        maven 'maven3'
     }
    environment {
         IMAGE_NAME = "petclinic"
@@ -19,6 +20,7 @@ pipeline {
 
       stage('Maven Build') {
           steps {
+            dir('spring-petclinic')
             sh 'mvn clean package -DskipTests'
           }
       }
